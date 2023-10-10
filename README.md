@@ -15,7 +15,8 @@ manner of technical products from laptops to their needed accessories to screens
 
    Open your preferred command-line interface and run the following command to clone the project:
 
-git clone https://dev.azure.com/23038513/_git/E-Commerce-App
+Azure: git clone https://dev.azure.com/23038513/_git/E-Commerce-App
+GitHub: git clone https://github.com/alharet7/E-Commerce-App-final
 
 2. **Open in Visual Studio**:
 
