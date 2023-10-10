@@ -1,0 +1,66 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Cart Details";
+    Layout = "_Layout";
+}
+
+<h1>Purchase Summary</h1>
+
+<hr />
+<a class="btn btn-primary px-3 m-3" asp-controller="Home" asp-action="Index">Back To Home</a>
+@if (Model.CartItems.Any())
+{
+    <div class="bg-light p-2 border border-rounded rounded-3 col-lg-12 col-md-12 col-sm-12 mb-5">
+        <table class="table bg-light">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cartItem in Model.CartItems)
+                {
+                    var product = cartItem.Product;
+                    <tr>
+                        <td>
+                            <p class="lead fw-bold mb-0">@product.Name</p>
+                            <img src="@product.ProductImage" class="img-fluid" style="object-fit: fill; width: 150px; height: 100px;" alt="@product.Name" />
+                        </td>
+                        <td>@product.Description</td>
+                        <td>@cartItem.Quantity</td>
+                        <td>@product.Price.ToString("0.00") JD</td>
+                        <td>@(product.Price * cartItem.Quantity) JD</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end me-2">
+            <h2>Total Price: @Model.CartItems.Sum(cartItem => cartItem.Product.Price * cartItem.Quantity).ToString("0.00") JD</h2>
+        </div>
+    </div>
+}
+
+
+
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-warning" role="alert">
+            Your cart is empty.
+        </div>
+    </div>
+}
+</div>
+
+<script>
+    $(document).ready(function () {
+        if (@Model.CartItems.Count == 0) {
+            alert("Your cart is empty!");
+        }
+    });
+</script>

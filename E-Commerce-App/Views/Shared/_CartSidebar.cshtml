@@ -1,0 +1,64 @@
+﻿@model List<Product>
+
+<div class="sidebar">
+    <div class="row">
+        @if (Model.Any())
+        {
+            @foreach (var product in Model)
+            {
+                <div class="col-md-6 col-sm-6 col-lg-4  mb-3 ">
+                    <div class="card">
+                        <div class="d-flex justify-content-between p-3">
+                            <p class="lead fw-bold mb-0">@product.Name</p>
+                            @* <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
+                                <p class="text-white mb-0 small">x4</p>
+                            </div> *@
+                        </div>
+                        <img src="@product.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 200px;" alt="@product.Name" />
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <p class="fs-5">Price:</p>
+                                <h5 class="text-dark mb-0">@product.Price.ToString("0.00") JD</h5>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                @if (product.StockQuantity == 0)
+                                {
+                                    <p class="text-muted mb-0">Available: <span class="fw-bold">Out of stock</span></p>
+                                }
+                                else
+                                {
+                                    <p class="text-muted mb-0">Available: <span class="fw-bold">@product.StockQuantity</span></p>
+                                }
+                                <div class="ms-auto text-warning">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <a asp-action="RemoveFromCart" asp-controller="Products" asp-route-productId="@product.ProductId" class="btn btn-danger m-2">Remove From Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">
+                    Your cart is empty.
+                </div>
+            </div>
+        }
+    </div>
+    <script>
+        $(document).ready(function () {
+            if (@Model.Count == 0) {
+                alert("Your cart is empty!");
+            }
+        });
+    </script>
+</div>

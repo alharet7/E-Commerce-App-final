@@ -1,0 +1,52 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+
+<section class="vh-70">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-70">
+            <div class="col-md-9 col-lg-6 col-xl-5 text-center">
+                <img src="https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7962.jpg?w=740&t=st=1694418612~exp=1694419212~hmac=5c5bc46a40679a3594368fa1a32525a1f25751bc959c4def3524dfffda779f35"
+                     class="img-fluid rounded-3 mx-auto my-3 d-block" alt="Sample image" style="max-width: 450px;">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-controller="Auth" asp-action="Authenticate">
+                    <div style="font-size:16px" class="text-danger" asp-validation-summary="All"></div>
+
+                    <!-- UserName input -->
+                    <div class="form-outline my-4">
+                        <input name="UserName" type="text" id="form3Example3" class="form-control form-control-lg"
+                               placeholder="Enter a valid User Name" />
+                        <label class="form-label" for="form3Example3"> User Name</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input name="Password" type="password" id="form3Example4" class="form-control form-control-lg"
+                               placeholder="Enter password" />
+                        <label class="form-label" for="form3Example4">Password</label>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center"></div>
+
+
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                            Login
+                        </button>
+                        <p style="font-size:16px" class="small fw-bold mt-2 pt-1 mb-0">
+                            Don't have an account? <a href="/Auth/SignUp"
+                                                      class="link-danger">Register</a>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+

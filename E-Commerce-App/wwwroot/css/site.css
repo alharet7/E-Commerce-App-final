@@ -1,0 +1,151 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #e3e6e6 !important;
+}
+
+.container-fluid .main {
+    background-color: #e3e6e6 !important;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #212529;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    padding: 15px;
+}
+
+.nav-link.btn.btn-outline-danger.text-white {
+    font-size: 15px !important;
+    padding: 7px 20px !important;
+}
+
+.nav-link.btn.btn-outline-success.text-white {
+    font-size: 15px !important;
+    padding: 7px 20px !important;
+}
+
+.card-title a {
+    text-decoration: none;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    background-color: #fff; /* Add a background color to the card */
+}
+
+.card.sideBarCard 
+{
+    transition: none !important;
+}
+
+.card.sideBarCard:hover
+{
+            transform: scale(1.00);
+
+}
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    .card img {
+        transition: box-shadow 0.3s ease, filter 0.3s ease;
+    }
+
+    .card:hover img {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        filter: brightness(110%); /* Add a glow effect by increasing brightness */
+    }
+
+.card-body {
+    transition: opacity 0.3s ease;
+}
+
+.custom-animation-btn:hover {
+    background-color: #007bff !important;
+    color: #fff !important;
+    transition: background-color 0.3s, color 0.3s !important;
+}
+
+.custom-animation-logout:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    transition: background-color 0.3s, border-color 0.3s !important;
+}
+
+.custom-animation-login:hover {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+    transition: background-color 0.3s, border-color 0.3s !important;
+}
+
+.Categoriesh1 {
+    font-family: 'Avenir', 'FF Kava', 'Times New Roman', sans-serif !important;
+    font-weight: 600;
+}
+/* Add hover effect for button background color */
+.custom-search-form .btn-outline-primary:hover {
+    background-color: #007bff !important;
+    color: #fff !important;
+}
+
+    /* Add hover effect for the search icon */
+    .custom-search-form .btn-outline-primary:hover i {
+        color: #fff !important;
+    }
+
+
+.user-icon {
+    border: 1px solid #28a745; /* Green border color */
+    border-radius: 50%; /* Rounded border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Set the width and height */
+    height: 40px;
+    transition: border-color 0.3s; /* Add transition for smooth effect */
+}
+
+    .user-icon i {
+        color: green !important;
+        transition: color 0.3s; /* Add transition for smooth effect */
+    }
+
+    .user-icon:hover i {
+        color: #258cfb !important; /* Change to the desired hover color */
+    }
+.icon-container:hover {
+    border-color: #64ca44 !important; /* Change to the color you want on hover */
+}
+
+    .icon-container:hover i {
+        color: green !important; /* Change to the color you want on hover */
+    }
+

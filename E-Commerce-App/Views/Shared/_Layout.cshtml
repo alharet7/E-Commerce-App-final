@@ -1,0 +1,159 @@
+﻿@using E_Commerce_App.Views.Shared;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Tech Pioneers</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/mdb.min.css">
+    <link rel="stylesheet" href="~/E_Commerce_App.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&family=FF+Kava:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow">
+            <div class="container-fluid ">
+                <a class="navbar-brand text-primary " asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo-01.png" class="img-fluid" style="width: 20px; height: 20px;" alt="Logo"> Tech Pioneers</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="~/images/menu.png" style="width: 20px; height: 20px;" />
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between">
+                    <div class="row w-100">
+                        <div class="col-md-6 col-sm-6 d-flex justify-content-center align-items-center">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                                </li>
+                                @if (User.IsInRole("Administrator"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-light" asp-area="" asp-page="/AdminDashboard/AdminDashboard">Admin Dashboard</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-6 col-sm-6 d-flex justify-content-end">
+                            <div class="d-flex align-items-center">
+                                <form class="custom-search-form d-flex mb-sm-0" asp-area="" asp-controller="Products" asp-action="Search">
+                                    <div class="input-group">
+                                        <input name="query" class="form-control rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                                        <button type="submit" class="btn btn-outline-primary rounded-pill ms-1">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                                       href="#"
+                                       id="navbarDropdownMenuAvatar"
+                                       role="button"
+                                       data-mdb-toggle="dropdown"
+                                       aria-expanded="false"
+                                       style="margin-left: 10px;">
+                                        <span class="border rounded-circle d-flex justify-content-center align-items-center icon-container bg-light" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-circle-user fa-2x"></i>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                        @if (signInManager.IsSignedIn(User))
+                                        {
+                                            <li>
+                                                <a class="dropdown-item d-flex justify-content-between" asp-page="/OrderConfirmation/OrderConfirmation">
+                                                    Cart
+                                                    <i class="fas fa-cart-shopping"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        @if (User.IsInRole("Administrator"))
+                                        {
+                                            <li>
+                                                <a class="dropdown-item d-flex justify-content-between" asp-area="" asp-page="/Create/AdminRegister">
+                                                    Admin Register
+                                                    <i class="fas fa-circle-user"></i>
+                                                </a>
+                                            </li>
+                                        }
+                                        <li class="my-2 my-md-2">
+                                            <partial name="_UserProfile"></partial>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid main">
+        <div class="row">
+            @if (!SharedFunctions.StringIsNullOrEmpty(Context.Request.Cookies["productIds"]) &&
+            Context.Request.Cookies["productIds"] != "{}")
+            {
+                @if (
+               SharedFunctions.IsAuthenticated(signInManager, User) &&
+               !Context.Request.Path.Value.Contains("/Cart") &&
+               !Context.Request.Path.Value.Contains("/OrderConfirmation") &&
+               !Context.Request.Path.Value.Contains("/Create") &&
+               !Context.Request.Path.Value.Contains("/Edit")
+               )
+
+                {
+                    <div class="col-lg-10 col-md-8 col-sm-8">
+                        <main role="main" class="pb-5">
+                            @RenderBody()
+                        </main>
+                    </div>
+
+                    <div class="col-lg-2 col-md-4 col-sm-4 col border-start border-1 border-success d-flex justify-content-center">
+                        @await Component.InvokeAsync("CartSidebar")
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-12">
+                        <main role="main" class="pb-5">
+                            @RenderBody()
+                        </main>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <main role="main" class="pb-5">
+                        @RenderBody()
+                    </main>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 -  Tech Pioneers - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="~/js/mdb.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

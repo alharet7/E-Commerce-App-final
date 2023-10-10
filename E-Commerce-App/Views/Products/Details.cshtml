@@ -1,0 +1,90 @@
+﻿@model E_Commerce_App.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="d-flex justify-content-center align-items-center h-100 my-4">
+    <div class="card text-dark" style="width: 400px;">
+        <div class="card-body" >
+            <h4>Product Details</h4>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProductImage)
+                    </dt>
+                    <dd>
+                        <img src="@Model.ProductImage" alt="Product Image" style="width: 250px;" />
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StockQuantity)
+                    </dt>
+                    @if(Model.StockQuantity == 0)
+                    {
+                        <dd>
+                            Out of stock
+                        </dd>
+                    }
+                    else
+                    {
+                    <dd>
+                        @Html.DisplayFor(model => model.StockQuantity)
+                    </dd>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 mb-2">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CategoryId)
+                    </dd>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <a asp-action="Index" class="btn btn-primary m-2">Back to Products List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

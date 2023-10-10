@@ -1,0 +1,25 @@
+﻿@model E_Commerce_App.Models.Product
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+
+<div class="container d-flex justify-content-center align-items-center vh-50 mt-4">
+    <div class="row text-dark">
+        <div class="row">
+            <div class="card">
+                <img src="@Model.ProductImage" class="card-img-top img-fluid" style="object-fit: fill; height: 250px;" alt="@Model.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Name</h5>
+                    <p class="card-text">@Model.Description</p>
+                    <p class="card-text"><strong>Price:</strong> @Model.Price.ToString("F2") JD</p>
+                    <p class="card-text"><strong>Stock Quantity:</strong> @Model.StockQuantity</p>
+                    <p class="card-text"><strong>Category:</strong> @Model.CategoryId</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

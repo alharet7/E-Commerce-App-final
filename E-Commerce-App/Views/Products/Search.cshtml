@@ -1,0 +1,65 @@
+﻿@model IEnumerable<E_Commerce_App.Models.Product>
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info" role="alert">
+        No results found.
+    </div>
+}
+else
+{
+    <div class="d-flex justify-content-center align-items-center my-4">
+        @foreach (var item in Model)
+        {
+            <div class="card text-dark" style="max-width: 300px; margin: 0 10px;">
+                <div class="card-body">
+                    <h4>Product Details</h4>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <dd>
+                                <img src="@item.ProductImage" alt="Product Image" style="max-width: 250px;" />
+                            </dd>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <dt>
+                                @Html.DisplayNameFor(model => item.Name)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.Name)
+                            </dd>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <dt>
+                                @Html.DisplayNameFor(model => item.Description)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => item.Description)
+                            </dd>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <div class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.ProductId })" class="btn btn-primary m-2">Edit</a>
+                                <a href="@Url.Action("Details", new { id = item.ProductId })" class="btn btn-info m-2">Details</a>
+                                <a href="@Url.Action("Delete", new { id = item.ProductId })" class="btn btn-danger m-2">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

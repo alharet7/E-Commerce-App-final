@@ -1,0 +1,46 @@
+﻿@page
+@model E_Commerce_App.Pages.AdminDashboard.AdminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+<h1 class="mb-4">@ViewData["Title"]</h1>
+<div class="table-responsive">
+    <table class="table table-dark table-hover table-bordered table-sm" style="border:1px solid #fff;">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>City</th>
+                <th>Street Address</th>
+                <th>Phone Number</th>
+                <th>Postal Code</th>
+                <th>Order Date</th>
+                <th>Total Price</th>
+                <th>Cart Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr style="border:1px solid #fff;">
+                    <td>@order.ID</td>
+                    <td>@order.UserId</td>
+                    <td>@order.City</td>
+                    <td>@order.StreetAddress</td>
+                    <td>@order.PhoneNumber</td>
+                    <td>@order.PostalCode</td>
+                    <td>@order.OrderDate</td>
+                    <td>@order.TotalPrice?.ToString("C")</td>
+                    <td class="p-3">
+                        <ul class="list-unstyled mb-0">
+                            @foreach (var item in order.CartItems)
+                            {
+                                <li class="mb-1">@item.Product.Name (@item.Quantity)</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
